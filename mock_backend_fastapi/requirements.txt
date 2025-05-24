@@ -11,3 +11,9 @@ qdrant-client
 openai
 tiktoken
 PyMuPDF
+fastapi
+uvicorn
+fitz  
+qdrant-client
+requests
+python-multipart
