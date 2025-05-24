@@ -10,9 +10,9 @@ export default function QueryForm({ setResults }: { setResults: Function }) {
   const [loading, setLoading] = useState(false);
   const [queryId, setQueryId] = useState<string | null>(null);
 
-  const handleToggle = (name: string) => {
+  const handleToggle = (arch: string) => {
     setSelected(prev =>
-      prev.includes(name) ? prev.filter(a => a !== name) : [...prev, name]
+      prev.includes(arch) ? prev.filter(a => a !== arch) : [...prev, arch]
     );
   };
 
@@ -32,7 +32,7 @@ export default function QueryForm({ setResults }: { setResults: Function }) {
       setQueryId(res.data.queryId);
     } catch (err: any) {
       console.error("❌ Query failed:", err);
-      alert("Query failed. Check your backend or console.");
+      alert("Query failed. Please check console or backend.");
     } finally {
       setLoading(false);
     }
@@ -43,27 +43,22 @@ export default function QueryForm({ setResults }: { setResults: Function }) {
       onSubmit={handleSubmit}
       className="space-y-6 bg-blue-800 bg-opacity-80 backdrop-blur-md border border-blue-700 p-6 rounded-3xl shadow-xl text-white max-w-xl w-full"
     >
-      {/* Input Section */}
       <div>
         <label className="font-medium text-blue-300">Your question:</label>
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="e.g., What is RAG?"
+          placeholder="e.g., What is this document about?"
           className="w-full mt-2 px-4 py-2 bg-blue-700 text-white border border-blue-500 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
       </div>
 
-      {/* Checkbox Section */}
       <div>
         <p className="font-medium text-blue-300">Choose RAG Architectures:</p>
         <div className="flex flex-wrap gap-4 mt-3">
           {architectures.map((arch) => (
-            <label
-              key={arch}
-              className="flex items-center gap-2 text-sm capitalize"
-            >
+            <label key={arch} className="flex items-center gap-2 text-sm capitalize">
               <input
                 type="checkbox"
                 value={arch}
@@ -77,20 +72,16 @@ export default function QueryForm({ setResults }: { setResults: Function }) {
         </div>
       </div>
 
-      {/* Submit Button */}
       <button
         type="submit"
         disabled={loading}
         className={`w-full px-4 py-2 rounded font-semibold transition ${
-          loading
-            ? "bg-gray-500 cursor-not-allowed"
-            : "bg-blue-600 hover:bg-blue-700"
+          loading ? "bg-gray-500 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
         } text-white`}
       >
         {loading ? "Thinking..." : "Ask"}
       </button>
 
-      {/* Result Link */}
       {queryId && (
         <a
           href={`/results/${queryId}`}
