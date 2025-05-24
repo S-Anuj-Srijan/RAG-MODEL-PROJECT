@@ -7,17 +7,28 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-gray-100 text-gray-900 font-sans">
-        <header className="bg-white shadow px-6 py-4">
-          <div className="max-w-7xl mx-auto flex justify-between items-center">
-            <h1 className="text-xl font-bold text-blue-700">🔍 RAG Playground</h1>
-            <nav className="space-x-4">
-              <a href="/upload" className="text-sm hover:underline">Upload</a>
-              <a href="/compare" className="text-sm hover:underline">Compare</a>
-            </nav>
+      <body className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100 font-sans min-h-screen flex flex-col">
+        
+        {/* Main container box */}
+        <main className="flex-grow flex items-center justify-center px-4 py-12">
+          <div className="w-full max-w-3xl bg-gray-950 border border-gray-800 rounded-2xl shadow-2xl p-10 space-y-6 animate-fadeIn">
+            
+            {/* Header */}
+            <div className="flex flex-col items-center justify-center space-y-3 text-center">
+              <h1 className="text-3xl font-bold text-blue-400">🔍 RAG Playground</h1>
+              <nav className="space-x-6">
+                <a href="/upload" className="text-sm text-gray-300 hover:text-white hover:underline transition">Upload</a>
+                <a href="/compare" className="text-sm text-gray-300 hover:text-white hover:underline transition">Compare</a>
+              </nav>
+            </div>
+
+            {/* Content */}
+            <div className="w-full bg-blue-800 bg-opacity-80 backdrop-blur-md border border-blue-700 rounded-3xl p-6 shadow-lg">
+  {children}
+</div>
+
           </div>
-        </header>
-        <main className="max-w-4xl mx-auto py-6 px-4">{children}</main>
+        </main>
       </body>
     </html>
   );
