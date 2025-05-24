@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import axios from "axios";
 
 const architectures = ["simple", "self_query", "reranker"];
 
@@ -22,20 +21,25 @@ export default function QueryForm({ setResults }: { setResults: Function }) {
 
     setLoading(true);
 
-    try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/query`, {
-        query,
-        architectures: selected,
-      });
+    // 🔁 MOCKED DATA
+    setTimeout(() => {
+      const mockResults = Object.fromEntries(
+        selected.map((arch, i) => [
+          arch,
+          {
+            answer: `📘 Mocked answer for ${arch} on: "${query}"`,
+            context: `This is mocked context data for ${arch}.`,
+            timeTaken: 900 + i * 100,
+            pageNumber: i + 1,
+            score: 0.75 + i * 0.05,
+          },
+        ])
+      );
 
-      setResults(res.data.results);
-      setQueryId(res.data.queryId);
-    } catch (err: any) {
-      console.error("❌ Query failed:", err);
-      alert("Query failed. Please check console or backend.");
-    } finally {
+      setResults(mockResults);
+      setQueryId("mock123");
       setLoading(false);
-    }
+    }, 1000);
   };
 
   return (
