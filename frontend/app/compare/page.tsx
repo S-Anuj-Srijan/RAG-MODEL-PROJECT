@@ -9,7 +9,7 @@ export default function ComparePage() {
   return (
     <div className="space-y-8 text-gray-900 dark:text-gray-100">
   <h1 className="text-3xl font-extrabold tracking-tight text-center text-blue-600 dark:text-blue-400 opacity-100">
-    🔍 Compare RAG Architectures
+    Compare RAG Architectures
   </h1>
 
   <div className="max-w-2xl mx-auto">

@@ -1,3 +1,60 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Glitch keyframes */
+@keyframes glitch {
+  0% {
+    text-shadow: 0 0 4px #0ff, 0 0 8px #0ff;
+    transform: translate(0);
+  }
+  20% {
+    text-shadow: 1px 1px 6px #0ff, -1px -1px 6px #0ff;
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    text-shadow: -1px -1px 6px #0ff, 1px 1px 6px #0ff;
+    transform: translate(1px, -1px);
+  }
+  60% {
+    text-shadow: 1px -1px 10px #0ff, -1px 1px 10px #0ff;
+    transform: translate(-1px, 0);
+  }
+  80% {
+    text-shadow: -1px 1px 10px #0ff, 1px -1px 10px #0ff;
+    transform: translate(1px, 1px);
+  }
+  100% {
+    text-shadow: 0 0 4px #0ff, 0 0 6px #0ff;
+    transform: translate(0);
+  }
+}
+
+/* Neon glitch text */
+.neon-glitch {
+  font-weight: 800;
+  color: #0ff;
+  text-shadow:
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    0 0 30px #0ff;
+  animation: glitch 1.3s infinite;
+}
+
+/* Optional: Flicker effect for any glowing text */
+@keyframes flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  70% {
+    opacity: 0.6;
+  }
+}
+
+.flicker {
+  animation: flicker 3s infinite;
+}
